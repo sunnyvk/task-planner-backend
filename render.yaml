@@ -2,8 +2,11 @@ services:
   - type: web
     name: task-planner-backend
     env: java
-    buildCommand: ./mvnw clean install -DskipTests
-    startCommand: java -Dserver.port=$PORT -jar target/spring_boot_backend_template-0.0.1.jar
+    region: singapore
+    plan: free
+    buildCommand: chmod +x ./mvnw && ./mvnw clean install -DskipTests
+    startCommand: java -Dserver.port=$PORT -jar target/*.jar
+    healthCheckPath: /api/users/signin
     envVars:
       - key: SPRING_PROFILES_ACTIVE
         value: prod
@@ -17,3 +20,9 @@ services:
         sync: false
       - key: PORT
         value: 10000
+
+databases:
+  - name: task-planner-db
+    plan: free
+    databaseName: taskplanner
+    user: taskplanner
