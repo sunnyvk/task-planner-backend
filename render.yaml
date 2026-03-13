@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: task-planner-backend
+    env: java
+    buildCommand: ./mvnw clean install -DskipTests
+    startCommand: java -Dserver.port=$PORT -jar target/spring_boot_backend_template-0.0.1.jar
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: JWT_SECRET
+        value: mySecretKeyForTaskPlannerProduction2026VeryLongAndSecure
+      - key: OPENAI_API_KEY
+        value: ""
+      - key: EMAIL_USERNAME
+        value: khambayatsunny278@gmail.com
+      - key: EMAIL_PASSWORD
+        sync: false
+      - key: PORT
+        value: 10000
